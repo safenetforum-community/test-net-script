@@ -25,7 +25,8 @@ SELECTION=$(whiptail --title "Safe Network Testnet" --radiolist \
 "3" "Stop Nodes" OFF \
 "4" "Get Test Coins" OFF \
 "5" "Start Vdash" OFF \
-"6" "Update System and Restart" OFF 3>&1 1>&2 2>&3)
+"6" "Update all and Restart" OFF \
+"7" "initial install of vdash" OFF 3>&1 1>&2 2>&3)
 
 if [[ $? -eq 255 ]]; then
 exit 0
@@ -115,6 +116,13 @@ elif [[ "$SELECTION" == "6" ]]; then
 rustup update
 sudo apt update -y && sudo apt upgrade -y
 sudo reboot
+
+############################################################################################################################################# comnet
+elif [[ "$SELECTION" == "7" ]]; then
+
+curl https://sh.rustup.rs -sSf | sh
+sudo apt install cargo
+cargo install vdash
 
 
 fi
