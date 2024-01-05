@@ -1,2 +1,2 @@
 # test-net-script
-whiptail script to start and stop nodes for ubuntu
+whiptail script to start and stop nodes
