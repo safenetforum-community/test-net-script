@@ -76,7 +76,7 @@ do
 done
 
 ############################# exit to Vdash
-#vdash --glob-path "$HOME/.local/share/safe/node/*/logs/safenode.log"
+vdash --glob-path "$HOME/.local/share/safe/node/*/logs/safenode.log"
 
 ######################################################################################################################## Upgrade Client to Latest
 elif [[ "$SELECTION" == "2" ]]; then
