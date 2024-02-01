@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-CLIENT=0.86.90
-NODE=0.100.36
-FAUCET=134.209.21.136:8000
+CLIENT=0.89.29
+NODE=0.103.25
+FAUCET=157.245.40.226:8000
 
 NODE_PORT_FIRST=4700
 NUMBER_NODES=40
@@ -42,7 +42,7 @@ fi
 
 ############################## count nodes directories and close fire wall
 PORTS_TO_CLOSE=$(ls $HOME/.local/share/safe/node | wc -l)
-sudo ufw delete allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$PORTS_TO_CLOSE-1))/tcp comment 'safe nodes'
+sudo ufw delete allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$PORTS_TO_CLOSE-1))/udp comment 'safe nodes'
 ############################## Stop Nodes and delete safe folder
 
 #install safeup
@@ -57,7 +57,7 @@ safeup client --version "$CLIENT"
 safeup node --version "$NODE"
 cargo install vdash
 ############################## open ports 
-sudo ufw allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$NUMBER_NODES-1))/tcp comment 'safe nodes'
+sudo ufw allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$NUMBER_NODES-1))/udp comment 'safe nodes'
 sleep 2
 ############################## start nodes
 for (( c=$NODE_PORT_FIRST; c<=$(($NODE_PORT_FIRST+$NUMBER_NODES-1)); c++ ))
@@ -91,7 +91,7 @@ safe wallet get-faucet "$FAUCET"
 elif [[ "$SELECTION" == "3" ]]; then
 ############################## count nodes directories and close fire wall
 PORTS_TO_CLOSE=$(ls $HOME/.local/share/safe/node | wc -l)
-sudo ufw delete allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$PORTS_TO_CLOSE-1))/tcp comment 'safe nodes'
+sudo ufw delete allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$PORTS_TO_CLOSE-1))/udp comment 'safe nodes'
 ############################## Stop Nodes and delete safe folder
 pkill -e safenode
 rm -rf $HOME/.local/share/safe
