@@ -35,6 +35,9 @@ fi
 ################################################################################################################ Upgrade Client & Node to Latest
 if [[ "$SELECTION" == "1" ]]; then
 NODE_PORT_FIRST=$(whiptail --title "Port Number of first Node" --inputbox "\nEnter Port Number of first Node" 8 40 $NODE_PORT_FIRST 3>&1 1>&2 2>&3)
+if [[ $? -eq 255 ]]; then
+exit 0
+fi
 NUMBER_NODES=$(whiptail --title "Number of Nodes to start" --inputbox "\nEnter number of nodes" 8 40 $NUMBER_NODES 3>&1 1>&2 2>&3)
 if [[ $? -eq 255 ]]; then
 exit 0
